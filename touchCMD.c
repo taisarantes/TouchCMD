@@ -3,19 +3,36 @@
 #include <string.h>
 #include <unistd.h>
 
-int main(int argc, char *argv[]){
-    printf("1 %s", argv[1]);
-    printf("2 %s", argv[1]);
-    printf("3 %s", argv[1]);
+int main(int argc, char *argv[])
+{
 
+    if (argc == 2)
+    {
+        if (strcmp(argv[0], "touch") == 0)
+        {
+            FILE *arquivo;
 
-    // VARIAVEIS
-    char *cmd = NULL, *cmd_copy = NULL, *token = NULL;
-    // A variavel 'cmd' vai guardar o comando que será lido no input
-    // A variavel 'token' guarda os tokens retornados pelo string tool
+            // Cria um arquivo no seu computador (filename.txt)
+            arquivo = fopen(argv[1], "w");
 
-    char *delim = " \n";
-    // A variavel 'delim' servirá parar definir o delimitador 
+            // Verifica se foi possível criar o arquivo e, se não, retorna uma mensagem de erro
+            if (arquivo != NULL)
+            {
+                printf("Deu certo.");
+            }
+            else
+            {
+                fprintf(stderr, "Não foi possível criar o arquivo. (┬┬﹏┬┬)");
+            }
+
+            // Fecha o arquivo
+            fclose(arquivo);
+        }
+    }
 
     return 0;
 }
+
+// verificar se na linha de comando tem mais de um argumento utilizando o argc
+// ele serve para contar os argumentos da linha de comando e o tamanho do argv
+// qnd temrinar, fazer o executavel desse codigo ser global, igual o git
